@@ -290,6 +290,17 @@
         <version>22.0</version>
       </dependency>
       <dependency>
+        <groupId>de.javakaffee</groupId>
+        <artifactId>kryo-serializers</artifactId>
+        <version>0.41</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.esotericsoftware</groupId>
+            <artifactId>kryo</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>${junit.version}</version>
@@ -338,6 +349,11 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.javakaffee</groupId>
+      <artifactId>kryo-serializers</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>

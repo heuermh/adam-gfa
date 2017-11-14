@@ -25,8 +25,9 @@ package com.github.heuermh.adam.gfa
 
 import com.esotericsoftware.kryo.Kryo
 
-//import de.javakaffee.kryoserializers.guava.ImmutableListSerializer
-//import de.javakaffee.kryoserializers.guava.ImmutableSetSerializer
+import de.javakaffee.kryoserializers.guava.ImmutableListSerializer
+import de.javakaffee.kryoserializers.guava.ImmutableMapSerializer
+import de.javakaffee.kryoserializers.guava.ImmutableSetSerializer
 
 import org.bdgenomics.adam.serialization.ADAMKryoRegistrator
 
@@ -39,6 +40,7 @@ class GfaKryoRegistrator extends ADAMKryoRegistrator {
     kryo.register(classOf[com.github.heuermh.adam.gfa.Fragment])
     kryo.register(classOf[com.github.heuermh.adam.gfa.Gap])
     kryo.register(classOf[com.github.heuermh.adam.gfa.GfaRecord])
+    kryo.register(classOf[com.github.heuermh.adam.gfa.Header])
     kryo.register(classOf[com.github.heuermh.adam.gfa.Orientation])
     kryo.register(classOf[com.github.heuermh.adam.gfa.Path])
     kryo.register(classOf[com.github.heuermh.adam.gfa.Position])
@@ -46,7 +48,8 @@ class GfaKryoRegistrator extends ADAMKryoRegistrator {
     kryo.register(classOf[com.github.heuermh.adam.gfa.Segment])
     kryo.register(classOf[com.github.heuermh.adam.gfa.Set])
 
-    //ImmutableListSerializer.registerSerializers(kryo)
-    //ImmutableSetSerializer.registerSerializers(kryo)
+    ImmutableListSerializer.registerSerializers(kryo)
+    ImmutableMapSerializer.registerSerializers(kryo)
+    ImmutableSetSerializer.registerSerializers(kryo)
   }
 }
