@@ -41,16 +41,18 @@ import com.google.common.collect.ImmutableMap;
 @Immutable
 public final class Segment extends GfaRecord {
     private final String id;
-    private final Integer length;
+    private final int length;
     private final String sequence;
     private final Map<String, Tag> tags;
 
-    public Segment(@Nullable final String id,
-                   @Nullable final Integer length,
+    public Segment(final String id,
+                   final int length,
                    @Nullable final String sequence,
                    final Map<String, Tag> tags) {
 
+        checkNotNull(id);
         checkNotNull(tags);
+        checkArgument(length >= 0, "length must be at least zero");
 
         this.id = id;
         this.length = length;
@@ -62,7 +64,7 @@ public final class Segment extends GfaRecord {
         return id;
     }
 
-    public Integer getLength() {
+    public int getLength() {
         return length;
     }
 
