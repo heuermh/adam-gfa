@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
 
-    gfa-adam  Graphical Fragment Assembly (GFA) 2.0 support for ADAM.
+    gfa-adam  Graphical Fragment Assembly (GFA) support for ADAM.
     Copyright (c) 2017 held jointly by the individual authors.
 
     This library is free software; you can redistribute it and/or modify it
@@ -34,7 +34,7 @@
   <packaging>jar</packaging>
   <name>gfa-adam</name>
   <version>1.0.0-SNAPSHOT</version>
-  <description>Graphical Fragment Assembly (GFA) 2.0 support for ADAM.</description>
+  <description>Graphical Fragment Assembly (GFA) support for ADAM.</description>
   <url>https://github.com/heuermh/gfa-adam</url>
   <inceptionYear>2017</inceptionYear>
   <scm>
@@ -60,6 +60,7 @@
   </licenses>
   <properties>
     <adam.version>0.23.0-SNAPSHOT</adam.version>
+    <dsh-bio.version>1.0-SNAPSHOT</dsh-bio.version>
     <jdk.version>1.8</jdk.version>
     <junit.version>4.12</junit.version>
     <maven.enforcer.jdk-version>[1.8,)</maven.enforcer.jdk-version>
@@ -334,6 +335,11 @@
         </exclusions>
       </dependency>
       <dependency>
+        <groupId>org.dishevelled</groupId>
+        <artifactId>dsh-bio-assembly</artifactId>
+        <version>${dsh-bio.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j.version}</version>
@@ -369,6 +375,11 @@
     <dependency>
       <groupId>org.bdgenomics.adam</groupId>
       <artifactId>adam-core-spark2_2.11</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.dishevelled</groupId>
+      <artifactId>dsh-bio-assembly</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>

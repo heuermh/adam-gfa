@@ -1,6 +1,6 @@
 /*
 
-    gfa-adam  Graphical Fragment Assembly (GFA) 2.0 support for ADAM.
+    gfa-adam  Graphical Fragment Assembly (GFA) support for ADAM.
     Copyright (c) 2017 held jointly by the individual authors.
 
     This library is free software; you can redistribute it and/or modify it
@@ -31,22 +31,34 @@ import de.javakaffee.kryoserializers.guava.ImmutableSetSerializer
 
 import org.bdgenomics.adam.serialization.ADAMKryoRegistrator
 
+/**
+ * Kryo registrator for GFA model classes. 
+ */
 class GfaKryoRegistrator extends ADAMKryoRegistrator {
   override def registerClasses(kryo: Kryo) {
     super.registerClasses(kryo)
 
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Alignment])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Edge])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Fragment])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Gap])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.GfaRecord])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Header])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Orientation])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Path])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Position])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Reference])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Segment])
-    kryo.register(classOf[com.github.heuermh.adam.gfa.Set])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa.Orientation])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa.Reference])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa.Tag])
+
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Containment])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Gfa1Record])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Header])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Link])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Path])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Segment])
+
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Alignment])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Edge])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Fragment])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Gap])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Gfa2Record])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Header])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Path])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Position])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Segment])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Set])
 
     ImmutableListSerializer.registerSerializers(kryo)
     ImmutableMapSerializer.registerSerializers(kryo)

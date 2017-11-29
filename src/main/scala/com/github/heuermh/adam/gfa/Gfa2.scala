@@ -1,6 +1,6 @@
 /*
 
-    gfa-adam  Graphical Fragment Assembly (GFA) 2.0 support for ADAM.
+    gfa-adam  Graphical Fragment Assembly (GFA) support for ADAM.
     Copyright (c) 2017 held jointly by the individual authors.
 
     This library is free software; you can redistribute it and/or modify it
@@ -28,10 +28,12 @@ import org.apache.spark.SparkContext._
 
 import org.apache.spark.rdd.RDD
 
+import org.dishevelled.bio.assembly.gfa2.Gfa2Record
+
 /**
  * Graphical Fragment Assembly (GFA) 2.0 support for ADAM.
  */
-object Gfa {
+object Gfa2 {
   def main(args: Array[String]) {
     System.out.println(args(0))
 
@@ -48,23 +50,23 @@ object Gfa {
 
     val sc = new SparkContext(conf)
 
-    def parse(s: String): Option[GfaRecord] = s.charAt(0) match {
-      case 'E' => Some(Edge.valueOf(s))
-      case 'F' => Some(Fragment.valueOf(s))
-      case 'G' => Some(Gap.valueOf(s))
-      case 'H' => Some(Header.valueOf(s))
-      case 'O' => Some(Path.valueOf(s))
-      case 'S' => Some(Segment.valueOf(s))
-      case 'U' => Some(Set.valueOf(s))
+    def parseGfa2(s: String): Option[Gfa2Record] = s.charAt(0) match {
+      case 'E' => Some(org.dishevelled.bio.assembly.gfa2.Edge.valueOf(s))
+      case 'F' => Some(org.dishevelled.bio.assembly.gfa2.Fragment.valueOf(s))
+      case 'G' => Some(org.dishevelled.bio.assembly.gfa2.Gap.valueOf(s))
+      case 'H' => Some(org.dishevelled.bio.assembly.gfa2.Header.valueOf(s))
+      case 'O' => Some(org.dishevelled.bio.assembly.gfa2.Path.valueOf(s))
+      case 'S' => Some(org.dishevelled.bio.assembly.gfa2.Segment.valueOf(s))
+      case 'U' => Some(org.dishevelled.bio.assembly.gfa2.Set.valueOf(s))
       case _ => None
     }
 
-    val gfa: RDD[GfaRecord] = sc.textFile(args(0))
-      .map(parse)
+    val gfa: RDD[Gfa2Record] = sc.textFile(args(0))
+      .map(parseGfa2)
       .filter(_.isDefined)
       .map(_.get)
 
-    System.out.println("read " + gfa.count() + " gfa records")
+    System.out.println("read " + gfa.count() + " GFA 2.0 records")
 
     gfa.saveAsTextFile(args(1))
   }
