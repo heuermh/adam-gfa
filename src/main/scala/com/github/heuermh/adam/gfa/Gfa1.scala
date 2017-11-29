@@ -24,9 +24,10 @@
 package com.github.heuermh.adam.gfa
 
 import org.apache.spark.{ SparkConf, SparkContext }
-import org.apache.spark.SparkContext._
 
 import org.apache.spark.rdd.RDD
+
+import org.bdgenomics.adam.util.TextRddWriter
 
 import org.dishevelled.bio.assembly.gfa1.Gfa1Record
 
@@ -66,6 +67,6 @@ object Gfa1 {
 
     System.out.println("read " + gfa.count() + " GFA 1.0 records")
 
-    gfa.saveAsTextFile(args(1))
+    TextRddWriter.writeTextRdd(gfa, outputPath = args(1), asSingleFile = true, disableFastConcat = false, optHeaderPath = None)
   }
 }
