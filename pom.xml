@@ -61,6 +61,7 @@
   <properties>
     <adam.version>0.23.0-SNAPSHOT</adam.version>
     <dsh-bio.version>1.0-SNAPSHOT</dsh-bio.version>
+    <grizzled-slf4j.version>1.3.1</grizzled-slf4j.version>
     <jdk.version>1.8</jdk.version>
     <junit.version>4.12</junit.version>
     <maven.enforcer.jdk-version>[1.8,)</maven.enforcer.jdk-version>
@@ -335,6 +336,11 @@
         </exclusions>
       </dependency>
       <dependency>
+        <groupId>org.clapper</groupId>
+        <artifactId>grizzled-slf4j_2.11</artifactId>
+        <version>${grizzled-slf4j.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.dishevelled</groupId>
         <artifactId>dsh-bio-assembly</artifactId>
         <version>${dsh-bio.version}</version>
@@ -375,6 +381,11 @@
     <dependency>
       <groupId>org.bdgenomics.adam</groupId>
       <artifactId>adam-core-spark2_2.11</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.clapper</groupId>
+      <artifactId>grizzled-slf4j_2.11</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>

@@ -23,6 +23,8 @@
 */
 package com.github.heuermh.adam.gfa
 
+import grizzled.slf4j.Logger
+
 import org.apache.spark.{ SparkConf, SparkContext }
 
 import org.apache.spark.rdd.RDD
@@ -35,8 +37,9 @@ import org.dishevelled.bio.assembly.gfa2.Gfa2Record
  * Graphical Fragment Assembly (GFA) 2.0 support for ADAM.
  */
 object Gfa2 {
+  val logger = Logger("com.github.heuermh.adam.gfa.Gfa2")
+
   def main(args: Array[String]) {
-    System.out.println(args(0))
 
     if (args.length < 2) {
       System.err.println("at least two arguments required, e.g. in.gfa2 out.gfa2")
@@ -62,12 +65,14 @@ object Gfa2 {
       case _ => None
     }
 
+    logger.info("Reading GFA 2.0 records from " + args(0))
+
     val gfa: RDD[Gfa2Record] = sc.textFile(args(0))
       .map(parseGfa2)
       .filter(_.isDefined)
       .map(_.get)
 
-    System.out.println("read " + gfa.count() + " GFA 2.0 records")
+    logger.info("Read " + gfa.count() + " GFA 2.0 records")
 
     TextRddWriter.writeTextRdd(gfa, outputPath = args(1), asSingleFile = true, disableFastConcat = false, optHeaderPath = None)
   }
