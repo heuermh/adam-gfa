@@ -59,17 +59,17 @@
     </license>
   </licenses>
   <properties>
-    <adam.version>0.23.0</adam.version>
-    <dsh-bio.version>1.0-SNAPSHOT</dsh-bio.version>
+    <adam.version>0.24.0</adam.version>
+    <dsh-bio.version>1.0.1</dsh-bio.version>
     <grizzled-slf4j.version>1.3.1</grizzled-slf4j.version>
     <jdk.version>1.8</jdk.version>
     <junit.version>4.12</junit.version>
     <maven.enforcer.jdk-version>[1.8,)</maven.enforcer.jdk-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.targetEncoding>UTF-8</project.build.targetEncoding>
-    <scala.version>2.11.8</scala.version>
+    <scala.version>2.11.12</scala.version>
     <scala.version.prefix>2.11</scala.version.prefix>
-    <slf4j.version>1.7.22</slf4j.version>
+    <slf4j.version>1.7.25</slf4j.version>
     <spark.version>2.2.0</spark.version>
   </properties>
   <build>
