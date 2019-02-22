@@ -22,7 +22,7 @@ Graphical Fragment Assembly (GFA) version 1.0
 ```
 $ spark-submit \
     --class com.github.heuermh.adam.gfa.Gfa1 \
-    target/gfa-adam-1.0.0-SNAPSHOT.jar \
+    target/gfa-adam_2.11-0.1.0-SNAPSHOT.jar \
     in.gfa \
     out.gfa
 ```
@@ -31,7 +31,7 @@ Graphical Fragment Assembly (GFA) version 2.0
 ```
 $ spark-submit \
     --class com.github.heuermh.adam.gfa.Gfa2 \
-    target/gfa-adam-1.0.0-SNAPSHOT.jar \
+    target/gfa-adam_2.11-0.1.0-SNAPSHOT.jar \
     in.gfa2 \
     out.gfa2
 ```
