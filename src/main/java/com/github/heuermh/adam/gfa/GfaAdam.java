@@ -21,9 +21,11 @@
     > http://www.opensource.org/licenses/lgpl-license.php
 
 */
+package com.github.heuermh.adam.gfa;
 
 /**
  * Graphical Fragment Assembly (GFA) support for ADAM.
  */
-package com.github.heuermh.adam.gfa;
-
+public final class GfaAdam {
+    // empty
+}

@@ -1,7 +1,7 @@
 /*
 
     gfa-adam  Graphical Fragment Assembly (GFA) support for ADAM.
-    Copyright (c) 2017 held jointly by the individual authors.
+    Copyright (c) 2017-2019 held jointly by the individual authors.
 
     This library is free software; you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License as published
