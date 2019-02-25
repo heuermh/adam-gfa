@@ -2,7 +2,7 @@
 
 Graphical Fragment Assembly (GFA) support for ADAM.
 
-[![Build Status](https://travis-ci.org/heuermh/gfa-adam.svg?branch=master)](https://travis-ci.org/heuermh/gfa-adam)
+[![Build Status](https://travis-ci.org/heuermh/adam-gfa.svg?branch=master)](https://travis-ci.org/heuermh/adam-gfa)
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.heuermh.adamgfa/adam-gfa_2.11.svg?maxAge=600)](http://search.maven.org/#search%7Cga%7C1%7Ccom.github.heuermh.adamgfa)
 
 ### Hacking adam-gfa
