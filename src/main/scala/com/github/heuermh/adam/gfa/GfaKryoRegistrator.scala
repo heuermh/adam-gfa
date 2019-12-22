@@ -48,6 +48,7 @@ class GfaKryoRegistrator extends ADAMKryoRegistrator {
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Link])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Path])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Segment])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Traversal])
 
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Alignment])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Edge])
