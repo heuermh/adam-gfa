@@ -65,7 +65,7 @@ case class Gfa1Record(
   // path
   pathName: String,
   segments: Seq[Reference],
-  overlaps: Seq[String],
+  overlaps: Option[Seq[String]],
 
   // traversal
   //pathName: String,
@@ -120,7 +120,7 @@ object Gfa1Record {
       mismatchCount = None,
       pathName = p.getName,
       segments = p.getSegments.asScala.map(Reference(_)),
-      overlaps = p.getOverlaps.asScala,
+      overlaps = if (p.hasOverlaps) Some(p.getOverlaps.asScala) else None,
       ordinal = None,
       tags = p.getTags().asScala.map(kv => (kv._1, Tag(kv._2))).toMap
     )

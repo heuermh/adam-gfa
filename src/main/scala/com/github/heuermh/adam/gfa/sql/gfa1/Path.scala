@@ -35,14 +35,14 @@ import scala.collection.JavaConverters._
 case class Path(
   pathName: String,
   segments: Seq[Reference],
-  overlaps: Seq[String],
+  overlaps: Option[Seq[String]],
   tags: Map[String, Tag]) {
 
   def asJava(): JPath = {
     new JPath(
       pathName,
       segments.map(_.asJava).asJava,
-      overlaps.asJava,
+      overlaps.map(_.asJava).orNull,
       tags.map(kv => (kv._1, kv._2.asJava)).asJava
     )
   }
@@ -53,7 +53,7 @@ object Path {
     Path(
       pathName = p.getName,
       segments = p.getSegments.asScala.map(Reference(_)),
-      overlaps = p.getOverlaps.asScala,
+      overlaps = if (p.hasOverlaps) Some(p.getOverlaps.asScala) else None,
       tags = p.getTags.asScala.map(kv => (kv._1, Tag(kv._2))).toMap
     )
   }
