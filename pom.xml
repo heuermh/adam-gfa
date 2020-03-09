@@ -62,7 +62,7 @@
   </licenses>
   <properties>
     <adam.version>0.31.0</adam.version>
-    <dsh-bio.version>1.4-SNAPSHOT</dsh-bio.version>
+    <dsh-bio.version>1.3.2</dsh-bio.version>
     <grizzled-slf4j.version>1.3.1</grizzled-slf4j.version>
     <junit.version>4.12</junit.version>
     <maven.compile.source>1.8</maven.compile.source>
