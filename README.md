@@ -12,7 +12,7 @@ Install
 
  * JDK 1.8 or later, http://openjdk.java.net
  * Apache Maven 3.3.9 or later, http://maven.apache.org
- * Apache Spark 2.4.5 or later, built for Scala 2.11 http://spark.apache.org
+ * Apache Spark 2.4.6 or later, built for Scala 2.11 http://spark.apache.org
 
 
 To build
