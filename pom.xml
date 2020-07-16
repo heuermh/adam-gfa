@@ -371,7 +371,7 @@
       <dependency>
         <groupId>org.dishevelled</groupId>
         <artifactId>dsh-bio-assembly</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <version>${dsh-bio.version}</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
