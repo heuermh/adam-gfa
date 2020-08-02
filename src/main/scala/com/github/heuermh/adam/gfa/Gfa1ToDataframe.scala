@@ -70,7 +70,7 @@ object Gfa1ToDataframe {
       case 'L' => Some(JLink.valueOf(s))
       case 'P' => Some(JPath.valueOf(s))
       case 'S' => Some(JSegment.valueOf(s))
-      case 'T' => Some(JTraversal.valueOf(s))
+      case 't' => Some(JTraversal.valueOf(s))
       case _ => None
     }
 

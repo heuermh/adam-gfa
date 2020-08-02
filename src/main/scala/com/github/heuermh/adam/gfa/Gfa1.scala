@@ -60,7 +60,7 @@ object Gfa1 {
       case 'L' => Some(org.dishevelled.bio.assembly.gfa1.Link.valueOf(s))
       case 'P' => Some(org.dishevelled.bio.assembly.gfa1.Path.valueOf(s))
       case 'S' => Some(org.dishevelled.bio.assembly.gfa1.Segment.valueOf(s))
-      case 'T' => Some(org.dishevelled.bio.assembly.gfa1.Traversal.valueOf(s))
+      case 't' => Some(org.dishevelled.bio.assembly.gfa1.Traversal.valueOf(s))
       case _ => None
     }
 

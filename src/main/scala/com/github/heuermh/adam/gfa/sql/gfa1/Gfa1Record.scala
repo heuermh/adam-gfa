@@ -152,7 +152,7 @@ object Gfa1Record {
 
   def apply(t: JTraversal): Gfa1Record = {
     Gfa1Record(
-      recordType = "T",
+      recordType = "t",
       id = null,
       sequence = null,
       length = None,
