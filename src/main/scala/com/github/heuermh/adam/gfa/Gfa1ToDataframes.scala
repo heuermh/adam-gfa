@@ -38,11 +38,6 @@ import org.apache.spark.rdd.RDD
 
 import org.apache.spark.sql.SparkSession
 
-import org.dishevelled.bio.assembly.gfa.{
-  Reference => JReference,
-  Tag => JTag
-}
-
 import org.dishevelled.bio.assembly.gfa1.{
   Gfa1Record,
   Link => JLink,

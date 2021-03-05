@@ -21,25 +21,27 @@
     > http://www.opensource.org/licenses/lgpl-license.php
 
 */
-package com.github.heuermh.adam.gfa.sql.gfa
+package com.github.heuermh.adam.gfa.sql.gfa1
 
-import org.dishevelled.bio.assembly.gfa.{ Tag => JTag }
+import org.dishevelled.bio.assembly.gfa1.{
+  Orientation => JOrientation,
+  Reference => JReference
+}
 
 /**
- * GFA tag case class for use in data frames.
+ * GFA 1.0 reference case class for use in data frames.
  */
-case class Tag(
-  name: String,
-  `type`: String,
-  value: String) {
+case class Reference(
+  id: String,
+  orientation: String) {
 
-  def asJava(): JTag = {
-    new JTag(name, `type`, value)
+  def asJava(): JReference = {
+    new JReference(id, JOrientation.valueOf(orientation))
   }
 }
 
-object Tag {
-  def apply(t: JTag): Tag = {
-    Tag(t.getName, t.getType, t.getValue)
+object Reference {
+  def apply(r: JReference): Reference = {
+    Reference(r.getId, r.getOrientation.toString)
   }
 }

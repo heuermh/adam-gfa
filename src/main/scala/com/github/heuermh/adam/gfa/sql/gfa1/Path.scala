@@ -23,8 +23,6 @@
 */
 package com.github.heuermh.adam.gfa.sql.gfa1
 
-import com.github.heuermh.adam.gfa.sql.gfa.{ Reference, Tag }
-
 import org.dishevelled.bio.assembly.gfa1.{ Path => JPath }
 
 import scala.collection.JavaConverters._
@@ -36,14 +34,14 @@ case class Path(
   pathName: String,
   segments: Seq[Reference],
   overlaps: Option[Seq[String]],
-  tags: Map[String, Tag]) {
+  annotations: Map[String, Annotation]) {
 
   def asJava(): JPath = {
     new JPath(
       pathName,
       segments.map(_.asJava).asJava,
       overlaps.map(_.asJava).orNull,
-      tags.map(kv => (kv._1, kv._2.asJava)).asJava
+      annotations.map(kv => (kv._1, kv._2.asJava)).asJava
     )
   }
 }
@@ -54,7 +52,7 @@ object Path {
       pathName = p.getName,
       segments = p.getSegments.asScala.map(Reference(_)),
       overlaps = if (p.hasOverlaps) Some(p.getOverlaps.asScala) else None,
-      tags = p.getTags.asScala.map(kv => (kv._1, Tag(kv._2))).toMap
+      annotations = p.getAnnotations.asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
 
@@ -63,7 +61,7 @@ object Path {
       r.pathName,
       r.segments,
       r.overlaps,
-      r.tags
+      r.annotations
     )
   }
 }

@@ -38,15 +38,13 @@ class GfaKryoRegistrator extends ADAMKryoRegistrator {
   override def registerClasses(kryo: Kryo) {
     super.registerClasses(kryo)
 
-    kryo.register(classOf[org.dishevelled.bio.assembly.gfa.Orientation])
-    kryo.register(classOf[org.dishevelled.bio.assembly.gfa.Reference])
-    kryo.register(classOf[org.dishevelled.bio.assembly.gfa.Tag])
-
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Containment])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Gfa1Record])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Header])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Orientation])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Link])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Path])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Reference])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Segment])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa1.Traversal])
 
@@ -56,8 +54,10 @@ class GfaKryoRegistrator extends ADAMKryoRegistrator {
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Gap])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Gfa2Record])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Header])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Orientation])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Path])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Position])
+    kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Reference])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Segment])
     kryo.register(classOf[org.dishevelled.bio.assembly.gfa2.Set])
 

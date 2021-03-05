@@ -23,8 +23,6 @@
 */
 package com.github.heuermh.adam.gfa.sql.gfa1
 
-import com.github.heuermh.adam.gfa.sql.gfa.{ Reference, Tag }
-
 import org.dishevelled.bio.assembly.gfa1.{ Traversal => JTraversal }
 
 import scala.collection.JavaConverters._
@@ -38,7 +36,7 @@ case class Traversal(
   source: Reference,
   target: Reference,
   overlap: String,
-  tags: Map[String, Tag]) {
+  annotations: Map[String, Annotation]) {
 
   def asJava(): JTraversal = {
     new JTraversal(
@@ -47,7 +45,7 @@ case class Traversal(
       source.asJava,
       target.asJava,
       overlap,
-      tags.map(kv => (kv._1, kv._2.asJava)).asJava
+      annotations.map(kv => (kv._1, kv._2.asJava)).asJava
     )
   }
 }
@@ -60,7 +58,7 @@ object Traversal {
       source = Reference(t.getSource),
       target = Reference(t.getTarget),
       overlap = t.getOverlap,
-      tags = t.getTags.asScala.map(kv => (kv._1, Tag(kv._2))).toMap
+      annotations = t.getAnnotations.asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
 
@@ -71,7 +69,7 @@ object Traversal {
       r.source,
       r.target,
       r.overlap,
-      r.tags
+      r.annotations
     )
   }
 }

@@ -23,8 +23,6 @@
 */
 package com.github.heuermh.adam.gfa.sql.gfa1
 
-import com.github.heuermh.adam.gfa.sql.gfa.{ Reference, Tag }
-
 import org.dishevelled.bio.assembly.gfa1.{ Link => JLink }
 
 import scala.collection.JavaConverters._
@@ -42,14 +40,14 @@ case class Link(
   readCount: Option[Int],
   fragmentCount: Option[Int],
   kmerCount: Option[Int],
-  tags: Map[String, Tag]) {
+  annotations: Map[String, Annotation]) {
 
   def asJava(): JLink = {
     new JLink(
       source.asJava,
       target.asJava,
       overlap,
-      tags.map(kv => (kv._1, kv._2.asJava)).asJava
+      annotations.map(kv => (kv._1, kv._2.asJava)).asJava
     )
   }
 }
@@ -66,7 +64,7 @@ object Link {
       readCount = if (l.containsReadCount) Some(l.getReadCount) else None,
       fragmentCount = if (l.containsFragmentCount) Some(l.getFragmentCount) else None,
       kmerCount = if (l.containsKmerCount) Some(l.getKmerCount) else None,
-      tags = l.getTags.asScala.map(kv => (kv._1, Tag(kv._2))).toMap
+      annotations = l.getAnnotations.asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
 
@@ -81,7 +79,7 @@ object Link {
       r.readCount,
       r.fragmentCount,
       r.kmerCount,
-      r.tags
+      r.annotations
     )
   }
 }

@@ -23,8 +23,6 @@
 */
 package com.github.heuermh.adam.gfa.sql.gfa1
 
-import com.github.heuermh.adam.gfa.sql.gfa.Tag
-
 import org.dishevelled.bio.assembly.gfa1.{ Segment => JSegment }
 
 import scala.collection.JavaConverters._
@@ -42,13 +40,13 @@ case class Segment(
   //sequenceChecksum: Byte[],
   sequenceChecksum: String,
   sequenceUri: String,
-  tags: Map[String, Tag]) {
+  annotations: Map[String, Annotation]) {
 
   def asJava(): JSegment = {
     new JSegment(
       id,
       sequence,
-      tags.map(kv => (kv._1, kv._2.asJava)).asJava
+      annotations.map(kv => (kv._1, kv._2.asJava)).asJava
     )
   }
 }
@@ -64,7 +62,7 @@ object Segment {
       kmerCount = if (s.containsKmerCount) Some(s.getKmerCount) else None,
       sequenceChecksum = null,
       sequenceUri = s.getSequenceUriOpt.orElse(null),
-      tags = s.getTags.asScala.map(kv => (kv._1, Tag(kv._2))).toMap
+      annotations = s.getAnnotations.asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
 
@@ -78,7 +76,7 @@ object Segment {
       r.kmerCount,
       r.sequenceChecksum,
       r.sequenceUri,
-      r.tags
+      r.annotations
     )
   }
 }

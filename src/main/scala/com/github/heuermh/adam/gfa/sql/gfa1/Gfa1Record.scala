@@ -23,8 +23,6 @@
 */
 package com.github.heuermh.adam.gfa.sql.gfa1
 
-import com.github.heuermh.adam.gfa.sql.gfa.{ Reference, Tag }
-
 import org.dishevelled.bio.assembly.gfa1.{
   Link => JLink,
   Path => JPath,
@@ -74,7 +72,7 @@ case class Gfa1Record(
   //target: Reference,
   //overlap: String,
 
-  tags: Map[String, Tag]
+  annotations: Map[String, Annotation]
 )
 
 object Gfa1Record {
@@ -98,7 +96,7 @@ object Gfa1Record {
       segments = null,
       overlaps = null,
       ordinal = None,
-      tags = l.getTags.asScala.map(kv => (kv._1, Tag(kv._2))).toMap
+      annotations = l.getAnnotations.asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
 
@@ -122,7 +120,7 @@ object Gfa1Record {
       segments = p.getSegments.asScala.map(Reference(_)),
       overlaps = if (p.hasOverlaps) Some(p.getOverlaps.asScala) else None,
       ordinal = None,
-      tags = p.getTags().asScala.map(kv => (kv._1, Tag(kv._2))).toMap
+      annotations = p.getAnnotations().asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
 
@@ -146,7 +144,7 @@ object Gfa1Record {
       segments = null,
       overlaps = null,
       ordinal = None,
-      tags = s.getTags.asScala.map(kv => (kv._1, Tag(kv._2))).toMap
+      annotations = s.getAnnotations.asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
 
@@ -170,7 +168,7 @@ object Gfa1Record {
       segments = null,
       overlaps = null,
       ordinal = Some(t.getOrdinal),
-      tags = t.getTags().asScala.map(kv => (kv._1, Tag(kv._2))).toMap
+      annotations = t.getAnnotations().asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
 }

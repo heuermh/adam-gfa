@@ -27,7 +27,7 @@ Read and write Graphical Fragment Assembly (GFA) version 1.0
 ```
 $ spark-submit \
     --class com.github.heuermh.adam.gfa.Gfa1 \
-    target/adam-gfa_2.11-${version}.jar \
+    target/adam-gfa_2.12-${version}.jar \
     in.gfa \
     out.gfa
 ```
@@ -38,7 +38,7 @@ Transform GFA 1.0 to generic [`Gfa1Record`](#gfa1record) records in Parquet form
 ```
 $ spark-submit \
     --class com.github.heuermh.adam.gfa.Gfa1ToDataframe \
-    target/adam-gfa_2.11-${version}.jar \
+    target/adam-gfa_2.12-${version}.jar \
     in.gfa \
     out.parquet
 ```
@@ -49,7 +49,7 @@ Transform GFA 1.0 to specific [`Link`](#link), [`Path`](#path), [`Segment`](#seg
 ```
 $ spark-submit \
     --class com.github.heuermh.adam.gfa.Gfa1ToDataframes \
-    target/adam-gfa_2.11-${version}.jar \
+    target/adam-gfa_2.12-${version}.jar \
     in.gfa \
     out
 ```
@@ -61,7 +61,7 @@ Read and write Graphical Fragment Assembly (GFA) version 2.0
 ```
 $ spark-submit \
     --class com.github.heuermh.adam.gfa.Gfa2 \
-    target/adam-gfa_2.11-${version}.jar \
+    target/adam-gfa_2.12-${version}.jar \
     in.gfa2 \
     out.gfa2
 ```
@@ -109,7 +109,7 @@ message spark_schema {
     }
   }
   optional int32 ordinal;
-  optional group tags (MAP) {
+  optional group annotations (MAP) {
     repeated group key_value {
       required binary key (UTF8);
       optional group value {
@@ -143,7 +143,7 @@ message spark_schema {
   optional int32 readCount;
   optional int32 fragmentCount;
   optional int32 kmerCount;
-  optional group tags (MAP) {
+  optional group annotations (MAP) {
     repeated group key_value {
       required binary key (UTF8);
       optional group value {
@@ -176,7 +176,7 @@ message spark_schema {
       optional binary element (UTF8);
     }
   }
-  optional group tags (MAP) {
+  optional group annotations (MAP) {
     repeated group key_value {
       required binary key (UTF8);
       optional group value {
@@ -203,7 +203,7 @@ message spark_schema {
   optional int32 kmerCount;
   optional binary sequenceChecksum (UTF8);
   optional binary sequenceUri (UTF8);
-  optional group tags (MAP) {
+  optional group annotations (MAP) {
     repeated group key_value {
       required binary key (UTF8);
       optional group value {
@@ -233,7 +233,7 @@ message spark_schema {
     optional binary orientation (UTF8);
   }
   optional binary overlap (UTF8);
-  optional group tags (MAP) {
+  optional group annotations (MAP) {
     repeated group key_value {
       required binary key (UTF8);
       optional group value {

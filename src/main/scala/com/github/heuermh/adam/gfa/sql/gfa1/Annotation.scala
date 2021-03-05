@@ -21,27 +21,25 @@
     > http://www.opensource.org/licenses/lgpl-license.php
 
 */
-package com.github.heuermh.adam.gfa.sql.gfa
+package com.github.heuermh.adam.gfa.sql.gfa1
 
-import org.dishevelled.bio.assembly.gfa.{
-  Orientation => JOrientation,
-  Reference => JReference
-}
+import org.dishevelled.bio.annotation.{ Annotation => JAnnotation }
 
 /**
- * GFA reference case class for use in data frames.
+ * GFA annotation case class for use in data frames.
  */
-case class Reference(
-  id: String,
-  orientation: String) {
+case class Annotation(
+  name: String,
+  `type`: String,
+  value: String) {
 
-  def asJava(): JReference = {
-    new JReference(id, JOrientation.valueOf(orientation))
+  def asJava(): JAnnotation = {
+    new JAnnotation(name, `type`, value)
   }
 }
 
-object Reference {
-  def apply(r: JReference): Reference = {
-    Reference(r.getId, r.getOrientation.toString)
+object Annotation {
+  def apply(a: JAnnotation): Annotation = {
+    Annotation(a.getName, a.getType, a.getValue)
   }
 }
