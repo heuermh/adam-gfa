@@ -3,8 +3,8 @@
 Graphical Fragment Assembly (GFA) support for ADAM.
 
 [![Build Status](https://travis-ci.org/heuermh/adam-gfa.svg?branch=master)](https://travis-ci.org/heuermh/adam-gfa)
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.heuermh.adamgfa/adam-gfa_2.11.svg?maxAge=600)](http://search.maven.org/#search%7Cga%7C1%7Ccom.github.heuermh.adamgfa)
-[![API Documentation](http://javadoc.io/badge/com.github.heuermh.adamgfa/adam-gfa_2.11.svg?color=brightgreen&label=scaladoc)](http://javadoc.io/doc/com.github.heuermh.adamgfa/adam-gfa_2.11)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.heuermh.adamgfa/adam-gfa_2.12.svg?maxAge=600)](http://search.maven.org/#search%7Cga%7C1%7Ccom.github.heuermh.adamgfa)
+[![API Documentation](http://javadoc.io/badge/com.github.heuermh.adamgfa/adam-gfa_2.12.svg?color=brightgreen&label=scaladoc)](http://javadoc.io/doc/com.github.heuermh.adamgfa/adam-gfa_2.12)
 
 ### Hacking adam-gfa
 
@@ -12,7 +12,7 @@ Install
 
  * JDK 1.8 or later, http://openjdk.java.net
  * Apache Maven 3.3.9 or later, http://maven.apache.org
- * Apache Spark 2.4.6 or later, built for Scala 2.11 http://spark.apache.org
+ * Apache Spark 3.0.0 or later, built for Scala 2.12 http://spark.apache.org
 
 
 To build
@@ -70,7 +70,7 @@ $ spark-submit \
 
 #### Gfa1Record
 
-[Gfa1Record (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.11/0.4.0/com/github/heuermh/adam/gfa/sql/gfa1/Gfa1Record.html)
+[Gfa1Record (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Gfa1Record.html)
 
 ```
 message spark_schema {
@@ -124,7 +124,7 @@ message spark_schema {
 
 #### Link
 
-[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.11/0.4.0/com/github/heuermh/adam/gfa/sql/gfa1/Link.html)
+[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Link.html)
 
 ```
 message spark_schema {
@@ -158,7 +158,7 @@ message spark_schema {
 
 #### Path
 
-[Path (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.11/0.4.0/com/github/heuermh/adam/gfa/sql/gfa1/Path.html)
+[Path (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Path.html)
 
 ```
 message spark_schema {
@@ -191,7 +191,7 @@ message spark_schema {
 
 #### Segment
 
-[Segment (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.11/0.4.0/com/github/heuermh/adam/gfa/sql/gfa1/Segment.html)
+[Segment (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Segment.html)
 
 ```
 message spark_schema {
@@ -218,7 +218,7 @@ message spark_schema {
 
 #### Traversal
 
-[Traversal (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.11/0.4.0/com/github/heuermh/adam/gfa/sql/gfa1/Traversal.html)
+[Traversal (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Traversal.html)
 
 ```
 message spark_schema {
