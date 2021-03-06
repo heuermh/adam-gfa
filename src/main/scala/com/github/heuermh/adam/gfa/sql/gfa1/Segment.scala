@@ -31,7 +31,7 @@ import scala.collection.JavaConverters._
  * GFA 1.0 segment case class for use in data frames.
  */
 case class Segment(
-  id: String,
+  name: String,
   sequence: String,
   length: Option[Int],
   readCount: Option[Int],
@@ -44,7 +44,7 @@ case class Segment(
 
   def asJava(): JSegment = {
     new JSegment(
-      id,
+      name,
       sequence,
       annotations.map(kv => (kv._1, kv._2.asJava)).asJava
     )
@@ -54,7 +54,7 @@ case class Segment(
 object Segment {
   def apply(s: JSegment): Segment = {
     Segment(
-      id = s.getId,
+      name = s.getName,
       sequence = s.getSequence,
       length = if (s.containsLength) Some(s.getLength) else None,
       readCount = if (s.containsReadCount) Some(s.getReadCount) else None,
@@ -68,7 +68,7 @@ object Segment {
 
   def apply(r: Gfa1Record): Segment = {
     Segment(
-      r.id,
+      r.name,
       r.sequence,
       r.length,
       r.readCount,

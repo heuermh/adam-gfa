@@ -87,7 +87,7 @@ object Gfa1ToDataframes {
       .map(_.get)
       .cache()
 
-    logger.info("Read " + gfa.count() + " GFA 1.0 { L, P, S, T } records")
+    logger.info("Read " + gfa.count() + " GFA 1.0 { L, P, S, t } records")
 
     val links = gfa
       .map(_ match {

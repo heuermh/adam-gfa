@@ -31,6 +31,7 @@ import scala.collection.JavaConverters._
  * GFA 1.0 traversal case class for use in data frames.
  */
 case class Traversal(
+  id: String,
   pathName: String,
   ordinal: Option[Int],
   source: Reference,
@@ -53,6 +54,7 @@ case class Traversal(
 object Traversal {
   def apply(t: JTraversal): Traversal = {
     Traversal(
+      id = t.getIdOpt.orElse(null),
       pathName = t.getPathName,
       ordinal = Some(t.getOrdinal),
       source = Reference(t.getSource),
@@ -64,6 +66,7 @@ object Traversal {
 
   def apply(r: Gfa1Record): Traversal = {
     Traversal(
+      r.id,
       r.pathName,
       r.ordinal,
       r.source,

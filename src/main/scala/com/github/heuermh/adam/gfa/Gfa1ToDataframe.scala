@@ -81,7 +81,7 @@ object Gfa1ToDataframe {
       .filter(_.isDefined)
       .map(_.get)
 
-    logger.info("Read " + gfa.count() + " GFA 1.0 { L, P, S, T } records")
+    logger.info("Read " + gfa.count() + " GFA 1.0 { L, P, S, t } records")
 
     val df = gfa
       .map(_ match {

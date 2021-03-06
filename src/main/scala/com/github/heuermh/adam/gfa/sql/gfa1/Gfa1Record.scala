@@ -39,7 +39,7 @@ case class Gfa1Record(
   recordType: String,
 
   // segment
-  id: String,
+  name: String,
   sequence: String,
   length: Option[Int],
   readCount: Option[Int],
@@ -50,7 +50,7 @@ case class Gfa1Record(
   sequenceUri: String,
 
   // link
-  //id: String,
+  id: String,
   source: Reference,
   target: Reference,
   overlap: String,
@@ -66,6 +66,7 @@ case class Gfa1Record(
   overlaps: Option[Seq[String]],
 
   // traversal
+  //id: String,
   //pathName: String,
   ordinal: Option[Int],
   //source: Reference,
@@ -79,7 +80,7 @@ object Gfa1Record {
   def apply(l: JLink): Gfa1Record = {
     Gfa1Record(
       recordType = "L",
-      id = l.getIdOpt.orElse(null),
+      name = null,
       sequence = null,
       length = None,
       readCount = if (l.containsReadCount) Some(l.getReadCount) else None,
@@ -87,6 +88,7 @@ object Gfa1Record {
       kmerCount = if (l.containsKmerCount) Some(l.getKmerCount) else None,
       sequenceChecksum = null,
       sequenceUri = null,
+      id = l.getIdOpt.orElse(null),
       source = Reference(l.getSource),
       target = Reference(l.getTarget),
       overlap = l.getOverlapOpt.orElse(null),
@@ -103,7 +105,7 @@ object Gfa1Record {
   def apply(p: JPath): Gfa1Record = {
     Gfa1Record(
       recordType = "P",
-      id = null,
+      name = null,
       sequence = null,
       length = None,
       readCount = None,
@@ -111,6 +113,7 @@ object Gfa1Record {
       kmerCount = None,
       sequenceChecksum = null,
       sequenceUri = null,
+      id = null,
       source = null,
       target = null,
       overlap = null,
@@ -127,7 +130,7 @@ object Gfa1Record {
   def apply(s: JSegment): Gfa1Record = {
     Gfa1Record(
       recordType = "S",
-      id = s.getId,
+      name = s.getName,
       sequence = s.getSequence,
       length = if (s.containsLength) Some(s.getLength) else None,
       readCount = if (s.containsReadCount) Some(s.getReadCount) else None,
@@ -135,6 +138,7 @@ object Gfa1Record {
       kmerCount = if (s.containsKmerCount) Some(s.getKmerCount) else None,
       sequenceChecksum = null,
       sequenceUri = s.getSequenceUriOpt.orElse(null),
+      id = null,
       source = null,
       target = null,
       overlap = null,
@@ -151,7 +155,7 @@ object Gfa1Record {
   def apply(t: JTraversal): Gfa1Record = {
     Gfa1Record(
       recordType = "t",
-      id = null,
+      name = null,
       sequence = null,
       length = None,
       readCount = None,
@@ -159,6 +163,7 @@ object Gfa1Record {
       kmerCount = None,
       sequenceChecksum = null,
       sequenceUri = null,
+      id = t.getIdOpt.orElse(null),
       source = Reference(t.getSource),
       target = Reference(t.getTarget),
       overlap = t.getOverlapOpt.orElse(null),
