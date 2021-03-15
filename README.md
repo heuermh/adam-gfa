@@ -80,52 +80,53 @@ $ spark-submit \
 
 #### Gfa1Record
 
-[Gfa1Record (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Gfa1Record.html)
+[Gfa1Record (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Gfa1Record.html)
 
 ```
 message spark_schema {
-  optional binary recordType (UTF8);
-  optional binary id (UTF8);
-  optional binary sequence (UTF8);
+  optional binary recordType (STRING);
+  optional binary name (STRING);
+  optional binary sequence (STRING);
   optional int32 length;
   optional int32 readCount;
   optional int32 fragmentCount;
   optional int32 kmerCount;
-  optional binary sequenceChecksum (UTF8);
-  optional binary sequenceUri (UTF8);
+  optional binary sequenceChecksum (STRING);
+  optional binary sequenceUri (STRING);
+  optional binary id (STRING);
   optional group source {
-    optional binary id (UTF8);
-    optional binary orientation (UTF8);
+    optional binary id (STRING);
+    optional binary orientation (STRING);
   }
   optional group target {
-    optional binary id (UTF8);
-    optional binary orientation (UTF8);
+    optional binary id (STRING);
+    optional binary orientation (STRING);
   }
-  optional binary overlap (UTF8);
+  optional binary overlap (STRING);
   optional int32 mappingQuality;
   optional int32 mismatchCount;
-  optional binary pathName (UTF8);
+  optional binary pathName (STRING);
   optional group segments (LIST) {
     repeated group list {
       optional group element {
-        optional binary id (UTF8);
-        optional binary orientation (UTF8);
+        optional binary id (STRING);
+        optional binary orientation (STRING);
       }
     }
   }
   optional group overlaps (LIST) {
     repeated group list {
-      optional binary element (UTF8);
+      optional binary element (STRING);
     }
   }
   optional int32 ordinal;
   optional group annotations (MAP) {
     repeated group key_value {
-      required binary key (UTF8);
+      required binary key (STRING);
       optional group value {
-        optional binary name (UTF8);
-        optional binary type (UTF8);
-        optional binary value (UTF8);
+        optional binary name (STRING);
+        optional binary type (STRING);
+        optional binary value (STRING);
       }
     }
   }
@@ -134,20 +135,20 @@ message spark_schema {
 
 #### Link
 
-[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Link.html)
+[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Link.html)
 
 ```
 message spark_schema {
-  optional binary id (UTF8);
+  optional binary id (STRING);
   optional group source {
-    optional binary id (UTF8);
-    optional binary orientation (UTF8);
+    optional binary id (STRING);
+    optional binary orientation (STRING);
   }
   optional group target {
-    optional binary id (UTF8);
-    optional binary orientation (UTF8);
+    optional binary id (STRING);
+    optional binary orientation (STRING);
   }
-  optional binary overlap (UTF8);
+  optional binary overlap (STRING);
   optional int32 mappingQuality;
   optional int32 mismatchCount;
   optional int32 readCount;
@@ -155,11 +156,11 @@ message spark_schema {
   optional int32 kmerCount;
   optional group annotations (MAP) {
     repeated group key_value {
-      required binary key (UTF8);
+      required binary key (STRING);
       optional group value {
-        optional binary name (UTF8);
-        optional binary type (UTF8);
-        optional binary value (UTF8);
+        optional binary name (STRING);
+        optional binary type (STRING);
+        optional binary value (STRING);
       }
     }
   }
@@ -168,31 +169,31 @@ message spark_schema {
 
 #### Path
 
-[Path (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Path.html)
+[Path (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Path.html)
 
 ```
 message spark_schema {
-  optional binary pathName (UTF8);
+  optional binary pathName (STRING);
   optional group segments (LIST) {
     repeated group list {
       optional group element {
-        optional binary id (UTF8);
-        optional binary orientation (UTF8);
+        optional binary id (STRING);
+        optional binary orientation (STRING);
       }
     }
   }
   optional group overlaps (LIST) {
     repeated group list {
-      optional binary element (UTF8);
+      optional binary element (STRING);
     }
   }
   optional group annotations (MAP) {
     repeated group key_value {
-      required binary key (UTF8);
+      required binary key (STRING);
       optional group value {
-        optional binary name (UTF8);
-        optional binary type (UTF8);
-        optional binary value (UTF8);
+        optional binary name (STRING);
+        optional binary type (STRING);
+        optional binary value (STRING);
       }
     }
   }
@@ -201,25 +202,25 @@ message spark_schema {
 
 #### Segment
 
-[Segment (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Segment.html)
+[Segment (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Segment.html)
 
 ```
 message spark_schema {
-  optional binary id (UTF8);
-  optional binary sequence (UTF8);
+  optional binary name (STRING);
+  optional binary sequence (STRING);
   optional int32 length;
   optional int32 readCount;
   optional int32 fragmentCount;
   optional int32 kmerCount;
-  optional binary sequenceChecksum (UTF8);
-  optional binary sequenceUri (UTF8);
+  optional binary sequenceChecksum (STRING);
+  optional binary sequenceUri (STRING);
   optional group annotations (MAP) {
     repeated group key_value {
-      required binary key (UTF8);
+      required binary key (STRING);
       optional group value {
-        optional binary name (UTF8);
-        optional binary type (UTF8);
-        optional binary value (UTF8);
+        optional binary name (STRING);
+        optional binary type (STRING);
+        optional binary value (STRING);
       }
     }
   }
@@ -228,28 +229,29 @@ message spark_schema {
 
 #### Traversal
 
-[Traversal (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.6.0/com/github/heuermh/adam/gfa/sql/gfa1/Traversal.html)
+[Traversal (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Traversal.html)
 
 ```
 message spark_schema {
-  optional binary pathName (UTF8);
+  optional binary id (STRING);
+  optional binary pathName (STRING);
   optional int32 ordinal;
   optional group source {
-    optional binary id (UTF8);
-    optional binary orientation (UTF8);
+    optional binary id (STRING);
+    optional binary orientation (STRING);
   }
   optional group target {
-    optional binary id (UTF8);
-    optional binary orientation (UTF8);
+    optional binary id (STRING);
+    optional binary orientation (STRING);
   }
-  optional binary overlap (UTF8);
+  optional binary overlap (STRING);
   optional group annotations (MAP) {
     repeated group key_value {
-      required binary key (UTF8);
+      required binary key (STRING);
       optional group value {
-        optional binary name (UTF8);
-        optional binary type (UTF8);
-        optional binary value (UTF8);
+        optional binary name (STRING);
+        optional binary type (STRING);
+        optional binary value (STRING);
       }
     }
   }
