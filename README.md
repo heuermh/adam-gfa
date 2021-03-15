@@ -12,7 +12,7 @@ Install
 
  * JDK 1.8 or later, http://openjdk.java.net
  * Apache Maven 3.3.9 or later, http://maven.apache.org
- * Apache Spark 3.0.0 or later, built for Scala 2.12 http://spark.apache.org
+ * Apache Spark 3.0.2 or later, built for Scala 2.12 http://spark.apache.org
 
 
 To build
@@ -55,6 +55,16 @@ $ spark-submit \
 ```
 (creates separate `out.links.parquet`, `out.paths.parquet`, `out.segments.parquet`, and `out.traversals.parquet` directories)
 
+
+Transform GFA 1.0 records in Parquet format to [Neptune property graph CSV format](https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format-gremlin.html)
+
+```
+$ spark-submit \
+    --class com.github.heuermh.adam.gfa.ToPropertyGraphCsv \
+    target/adam-gfa_2.12-${version}.jar \
+    in.parquet \
+    out
+```
 
 Read and write Graphical Fragment Assembly (GFA) version 2.0
 
