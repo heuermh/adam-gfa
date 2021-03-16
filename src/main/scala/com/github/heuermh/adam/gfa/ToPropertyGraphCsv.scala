@@ -93,7 +93,7 @@ object ToPropertyGraphCsv {
       .withColumnRenamed("recordType", "record_type:String")
 
     renamedContainments.write.option("header", true).csv(args(1) + "-containment-edges.csv")
-    logger.info("Wrote " + renamedContainemnts.count() + " containment edges")
+    logger.info("Wrote " + renamedContainments.count() + " containment edges")
 
     val links = spark.sql("select id, source.id as sourceId, source.orientation as sourceOrientation, target.id as targetId, target.orientation as targetOrientation, overlap, mappingQuality, mismatchCount, readCount, fragmentCount, kmerCount, recordType from records where recordType = 'L'")
 
