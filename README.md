@@ -53,7 +53,7 @@ $ spark-submit \
     in.gfa \
     out
 ```
-(creates separate `out.links.parquet`, `out.paths.parquet`, `out.segments.parquet`, and `out.traversals.parquet` directories)
+(creates separate `out.containments.parquet`, `out.links.parquet`, `out.paths.parquet`, `out.segments.parquet`, and `out.traversals.parquet` directories)
 
 
 Transform GFA 1.0 records in Parquet format to [Neptune property graph CSV format](https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format-gremlin.html)
@@ -65,6 +65,8 @@ $ spark-submit \
     in.parquet \
     out
 ```
+(creates separate `out-segment-nodes.csv`, `out-containment-edges.csv`, `out-link-edges.csv`, and `out-traversal-edges.csv` directories)
+
 
 Read and write Graphical Fragment Assembly (GFA) version 2.0
 
