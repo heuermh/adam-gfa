@@ -24,6 +24,7 @@
 package com.github.heuermh.adam.gfa
 
 import com.github.heuermh.adam.gfa.sql.gfa1.{
+  Containment,
   Link,
   Path,
   Segment,
@@ -39,6 +40,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
 import org.dishevelled.bio.assembly.gfa1.{
+  Containment => JContainment,
   Gfa1Record,
   Link => JLink,
   Path => JPath,
@@ -62,7 +64,7 @@ object Gfa1ToDataframes {
     }
 
     val conf = new SparkConf()
-      .setAppName("Convert Graphical Fragment Assembly (GFA) 1.0 to multiple DFs in Parquet format.")
+      .setAppName("Transform Graphical Fragment Assembly (GFA) 1.0 to multiple DFs in Parquet format.")
       .set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .set("spark.kryo.registrator", "com.github.heuermh.adam.gfa.GfaKryoRegistrator")
       .set("spark.kryo.referenceTracking", "true")
@@ -72,6 +74,7 @@ object Gfa1ToDataframes {
     import spark.implicits._
 
     def parseGfa1(s: String): Option[Gfa1Record] = s.charAt(0) match {
+      case 'C' => Some(JContainment.valueOf(s))
       case 'L' => Some(JLink.valueOf(s))
       case 'P' => Some(JPath.valueOf(s))
       case 'S' => Some(JSegment.valueOf(s))
@@ -87,7 +90,19 @@ object Gfa1ToDataframes {
       .map(_.get)
       .cache()
 
-    logger.info("Read " + gfa.count() + " GFA 1.0 { L, P, S, t } records")
+    logger.info("Read " + gfa.count() + " GFA 1.0 { C, L, P, S, t } records")
+
+    val containments = gfa
+      .map(_ match {
+        case c: JContainment => Some(Containment(c))
+        case _ => None
+      })
+      .filter(_.isDefined)
+      .map(_.get)
+      .toDF()
+
+    logger.info("Writing containment data frame to Parquet " + args(1) + ".containments.parquet")
+    containments.write.parquet(args(1) + ".containments.parquet")
 
     val links = gfa
       .map(_ match {

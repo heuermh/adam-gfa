@@ -44,7 +44,7 @@ $ spark-submit \
 ```
 
 
-Transform GFA 1.0 to specific [`Link`](#link), [`Path`](#path), [`Segment`](#segment), and [`Traversal`](#traversal) records in Parquet format
+Transform GFA 1.0 to specific [`Containment`](#containment), [`Link`](#link), [`Path`](#path), [`Segment`](#segment), and [`Traversal`](#traversal) records in Parquet format
 
 ```
 $ spark-submit \
@@ -120,6 +120,47 @@ message spark_schema {
     }
   }
   optional int32 ordinal;
+  optional group container {
+    optional binary id (STRING);
+    optional binary orientation (STRING);
+  }
+  optional group contained {
+    optional binary id (STRING);
+    optional binary orientation (STRING);
+  }
+  optional int32 position;
+  optional group annotations (MAP) {
+    repeated group key_value {
+      required binary key (STRING);
+      optional group value {
+        optional binary name (STRING);
+        optional binary type (STRING);
+        optional binary value (STRING);
+      }
+    }
+  }
+}
+```
+
+#### Containment
+
+[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Containement.html)
+
+```
+message spark_schema {
+  optional binary id (STRING);
+  optional group container {
+    optional binary id (STRING);
+    optional binary orientation (STRING);
+  }
+  optional group contained {
+    optional binary id (STRING);
+    optional binary orientation (STRING);
+  }
+  optional int32 position;
+  optional binary overlap (STRING);
+  optional int32 mismatchCount;
+  optional int32 readCount;
   optional group annotations (MAP) {
     repeated group key_value {
       required binary key (STRING);

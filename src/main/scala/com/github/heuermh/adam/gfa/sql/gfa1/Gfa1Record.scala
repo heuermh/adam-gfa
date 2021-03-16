@@ -24,6 +24,7 @@
 package com.github.heuermh.adam.gfa.sql.gfa1
 
 import org.dishevelled.bio.assembly.gfa1.{
+  Containment => JContainment,
   Link => JLink,
   Path => JPath,
   Segment => JSegment,
@@ -73,6 +74,15 @@ case class Gfa1Record(
   //target: Reference,
   //overlap: String,
 
+  // containment
+  //id: String,
+  container: Reference,
+  contained: Reference,
+  position: Option[Int],
+  //overlap: String,
+  //mismatchCount: Option[Int],
+  //readCount: Option[Int],
+
   annotations: Map[String, Annotation]
 )
 
@@ -98,6 +108,9 @@ object Gfa1Record {
       segments = null,
       overlaps = null,
       ordinal = None,
+      container = null,
+      contained = null,
+      position = None,
       annotations = l.getAnnotations.asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
@@ -123,6 +136,9 @@ object Gfa1Record {
       segments = p.getSegments.asScala.map(Reference(_)),
       overlaps = if (p.hasOverlaps) Some(p.getOverlaps.asScala) else None,
       ordinal = None,
+      container = null,
+      contained = null,
+      position = None,
       annotations = p.getAnnotations().asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
@@ -148,6 +164,9 @@ object Gfa1Record {
       segments = null,
       overlaps = null,
       ordinal = None,
+      container = null,
+      contained = null,
+      position = None,
       annotations = s.getAnnotations.asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
@@ -173,7 +192,38 @@ object Gfa1Record {
       segments = null,
       overlaps = null,
       ordinal = Some(t.getOrdinal),
+      container = null,
+      contained = null,
+      position = None,
       annotations = t.getAnnotations().asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
+    )
+  }
+
+  def apply(c: JContainment): Gfa1Record = {
+    Gfa1Record(
+      recordType = "C",
+      name = null,
+      sequence = null,
+      length = None,
+      readCount = if (c.containsReadCount) Some(c.getReadCount) else None,
+      fragmentCount = None,
+      kmerCount = None,
+      sequenceChecksum = null,
+      sequenceUri = null,
+      id = c.getIdOpt.orElse(null),
+      source = null,
+      target = null,
+      overlap = c.getOverlapOpt.orElse(null),
+      mappingQuality = None,
+      mismatchCount = if (c.containsMismatchCount) Some(c.getMismatchCount) else None,
+      pathName = null,
+      segments = null,
+      overlaps = null,
+      ordinal = None,
+      container = Reference(c.getContainer),
+      contained = Reference(c.getContained),
+      position = Some(c.getPosition),
+      annotations = c.getAnnotations().asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
 }

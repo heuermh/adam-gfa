@@ -40,12 +40,12 @@ object ToPropertyGraphCsv {
   def main(args: Array[String]) {
 
     if (args.length < 2) {
-      System.err.println("at least two arguments required, e.g. in.parquet out[-segment-nodes.csv,-link-edges.csv,-traversal-edges.csv]")
+      System.err.println("at least two arguments required, e.g. in.parquet out[-segment-nodes.csv,-containment-edges.csv,-link-edges.csv,-traversal-edges.csv]")
       System.exit(1)
     }
 
     val conf = new SparkConf()
-      .setAppName("Graphical Fragment Assembly (GFA) 1.0 support for ADAM.")
+      .setAppName("Transform Graphical Fragment Assembly (GFA) 1.0 records in Parquet format to property graph CSV.")
       .set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .set("spark.kryo.registrator", "com.github.heuermh.adam.gfa.GfaKryoRegistrator")
       .set("spark.kryo.referenceTracking", "true")
@@ -76,6 +76,24 @@ object ToPropertyGraphCsv {
     // and write to csv
     renamedSegments.write.option("header", true).csv(args(1) + "-segment-nodes.csv")
     logger.info("Wrote " + renamedSegments.count() + " segment nodes")
+
+    val containments = spark.sql("select id, container.id as sourceId, container.orientation as sourceOrientation, contained.id as targetId, contained.orientation as targetOrientation, position, overlap, mismatchCount, readCount, recordType from records where recordType = 'C'")
+
+    // rename containment columns
+    val renamedContainments = containments
+      .withColumnRenamed("id", "~id") // can't do these ~ column names in sql, parse error
+      .withColumnRenamed("sourceId", "~source")
+      .withColumnRenamed("targetId", "~target")
+      .withColumnRenamed("sourceOrientation", "source_orientation:String") // container/contained as extra columns?
+      .withColumnRenamed("targetOrientation", "target_orientation:String")
+      .withColumnRenamed("position", "position:Int")
+      .withColumnRenamed("overlap", "overlap:String")
+      .withColumnRenamed("mismatchCount", "mismatch_count:Int")
+      .withColumnRenamed("readCount", "read_count:Int")
+      .withColumnRenamed("recordType", "record_type:String")
+
+    renamedContainments.write.option("header", true).csv(args(1) + "-containment-edges.csv")
+    logger.info("Wrote " + renamedContainemnts.count() + " containment edges")
 
     val links = spark.sql("select id, source.id as sourceId, source.orientation as sourceOrientation, target.id as targetId, target.orientation as targetOrientation, overlap, mappingQuality, mismatchCount, readCount, fragmentCount, kmerCount, recordType from records where recordType = 'L'")
 
