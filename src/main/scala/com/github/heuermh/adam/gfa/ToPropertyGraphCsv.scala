@@ -115,7 +115,7 @@ object ToPropertyGraphCsv {
     renamedLinks.write.option("header", true).csv(args(1) + "-link-edges.csv")
     logger.info("Wrote " + renamedLinks.count() + " link edges")
 
-    val traversals = spark.sql("select id, source.id as sourceId, source.orientation as sourceOrientation, target.id as targetId, target.orientation as targetOrientation, ordinal, overlap, recordType from records where recordType = 't'")
+    val traversals = spark.sql("select id, source.id as sourceId, source.orientation as sourceOrientation, target.id as targetId, target.orientation as targetOrientation, pathName, ordinal, overlap, recordType from records where recordType = 't'")
 
     // rename traversal columns
     val renamedTraversals = traversals
@@ -124,6 +124,7 @@ object ToPropertyGraphCsv {
       .withColumnRenamed("targetId", "~target")
       .withColumnRenamed("sourceOrientation", "source_orientation:String")
       .withColumnRenamed("targetOrientation", "target_orientation:String")
+      .withColumnRenamed("pathName", "path_name:String")
       .withColumnRenamed("ordinal", "ordinal:Int")
       .withColumnRenamed("overlap", "overlap:String")
       .withColumnRenamed("recordType", "record_type:String")
