@@ -82,7 +82,7 @@ $ spark-submit \
 
 #### Gfa1Record
 
-[Gfa1Record (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Gfa1Record.html)
+[Gfa1Record (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.8.0/com/github/heuermh/adam/gfa/sql/gfa1/Gfa1Record.html)
 
 ```
 message spark_schema {
@@ -146,7 +146,7 @@ message spark_schema {
 
 #### Containment
 
-[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Containment.html)
+[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.8.0/com/github/heuermh/adam/gfa/sql/gfa1/Containment.html)
 
 ```
 message spark_schema {
@@ -178,7 +178,7 @@ message spark_schema {
 
 #### Link
 
-[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Link.html)
+[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.8.0/com/github/heuermh/adam/gfa/sql/gfa1/Link.html)
 
 ```
 message spark_schema {
@@ -212,7 +212,7 @@ message spark_schema {
 
 #### Path
 
-[Path (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Path.html)
+[Path (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.8.0/com/github/heuermh/adam/gfa/sql/gfa1/Path.html)
 
 ```
 message spark_schema {
@@ -245,7 +245,7 @@ message spark_schema {
 
 #### Segment
 
-[Segment (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Segment.html)
+[Segment (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.8.0/com/github/heuermh/adam/gfa/sql/gfa1/Segment.html)
 
 ```
 message spark_schema {
@@ -272,7 +272,7 @@ message spark_schema {
 
 #### Traversal
 
-[Traversal (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Traversal.html)
+[Traversal (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.8.0/com/github/heuermh/adam/gfa/sql/gfa1/Traversal.html)
 
 ```
 message spark_schema {
