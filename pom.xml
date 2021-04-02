@@ -33,7 +33,7 @@
   <artifactId>adam-gfa_2.12</artifactId>
   <packaging>jar</packaging>
   <name>adam-gfa</name>
-  <version>0.8.0</version>
+  <version>0.9.0-SNAPSHOT</version>
   <description>Graphical Fragment Assembly (GFA) support for ADAM.</description>
   <url>https://github.com/heuermh/adam-gfa</url>
   <inceptionYear>2017</inceptionYear>
@@ -41,7 +41,7 @@
     <connection>scm:git:git@github.com:heuermh/adam-gfa.git</connection>
     <developerConnection>scm:git:git@github.com:heuermh/adam-gfa.git</developerConnection>
     <url>git@github.com:heuermh/adam-gfa.git</url>
-    <tag>adam-gfa_2.12-0.8.0</tag>
+    <tag>HEAD</tag>
   </scm>
   <developers>
     <developer>
