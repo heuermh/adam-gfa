@@ -146,7 +146,7 @@ message spark_schema {
 
 #### Containment
 
-[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Containement.html)
+[Link (scaladoc)](https://www.javadoc.io/static/com.github.heuermh.adamgfa/adam-gfa_2.12/0.7.0/com/github/heuermh/adam/gfa/sql/gfa1/Containment.html)
 
 ```
 message spark_schema {
