@@ -40,6 +40,9 @@ case class Segment(
   //sequenceChecksum: Byte[],
   sequenceChecksum: String,
   sequenceUri: String,
+  stableName: String,
+  stableOffset: Option[Int],
+  stableRank: Option[Int],
   annotations: Map[String, Annotation]) {
 
   def asJava(): JSegment = {
@@ -62,6 +65,9 @@ object Segment {
       kmerCount = if (s.containsKmerCount) Some(s.getKmerCount) else None,
       sequenceChecksum = null,
       sequenceUri = s.getSequenceUriOpt.orElse(null),
+      stableName = s.getStableNameOpt.orElse(null),
+      stableOffset = if (s.containsStableOffset) Some(s.getStableOffset) else None,
+      stableRank = if (s.containsStableRank) Some(s.getStableRank) else None,
       annotations = s.getAnnotations.asScala.map(kv => (kv._1, Annotation(kv._2))).toMap
     )
   }
@@ -76,6 +82,9 @@ object Segment {
       r.kmerCount,
       r.sequenceChecksum,
       r.sequenceUri,
+      r.stableName,
+      r.stableOffset,
+      r.stableRank,
       r.annotations
     )
   }
