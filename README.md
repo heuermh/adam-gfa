@@ -95,6 +95,9 @@ message spark_schema {
   optional int32 kmerCount;
   optional binary sequenceChecksum (STRING);
   optional binary sequenceUri (STRING);
+  optional binary stableName (STRING);
+  optional int32 stableOffset;
+  optional int32 stableRank;
   optional binary id (STRING);
   optional group source {
     optional binary id (STRING);
@@ -257,6 +260,9 @@ message spark_schema {
   optional int32 kmerCount;
   optional binary sequenceChecksum (STRING);
   optional binary sequenceUri (STRING);
+  optional binary stableName (STRING);
+  optional int32 stableOffset;
+  optional int32 stableRank;
   optional group annotations (MAP) {
     repeated group key_value {
       required binary key (STRING);
