@@ -36,12 +36,14 @@ case class Reference(
   orientation: String) {
 
   def asJava(): JReference = {
-    new JReference(id, JOrientation.valueOf(orientation))
+    //new JReference(id, JOrientation.valueOf(orientation))
+    new JReference(id, if ("+" == orientation) JOrientation.FORWARD else JOrientation.REVERSE)
   }
 }
 
 object Reference {
   def apply(r: JReference): Reference = {
-    Reference(r.getId, r.getOrientation.toString)
+    //Reference(r.getId, r.getOrientation.toString)
+    Reference(r.getId, r.getOrientation.getSymbol)
   }
 }
