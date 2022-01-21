@@ -34,8 +34,8 @@ import com.github.heuermh.adam.gfa.sql.gfa1.Gfa1Record
 /**
  * Convert Gfa1Records to property graph CSV format.
  */
-object ToPropertyGraphCsv {
-  val logger = Logger("com.github.heuermh.adam.gfa.ToPropertyGraphCsv")
+object ToPropertyGraphCsv2 {
+  val logger = Logger("com.github.heuermh.adam.gfa.ToPropertyGraphCsv2")
 
   def main(args: Array[String]) {
 
@@ -54,13 +54,9 @@ object ToPropertyGraphCsv {
     val spark = SparkSession.builder.config(sc.getConf).getOrCreate()
     import spark.implicits._
 
-    logger.info("Reading GFA 1.0 records from " + args(0) + " in Parquet format")
-
-    val records = spark.read.parquet(args(0)).as[Gfa1Record].cache()
-    records.createOrReplaceTempView("records")
-
     // convert segments to node csv
-    val segments = spark.sql("select name, sequence, length, readCount, fragmentCount, kmerCount, sequenceChecksum, sequenceUri from records where recordType = 'S'")
+    logger.info("Reading GFA 1.0 segments from " + args(0) + " in Parquet format")
+    val segments = spark.sql("select name, sequence, length, readCount, fragmentCount, kmerCount, sequenceChecksum, sequenceUri from parquet.`" + args(0) + "` where recordType = 'S'")
 
     // rename segment columns
     val renamedSegments = segments
@@ -77,7 +73,9 @@ object ToPropertyGraphCsv {
     renamedSegments.write.option("header", true).csv(args(1) + "-segment-nodes.csv")
     logger.info("Wrote " + renamedSegments.count() + " segment nodes")
 
-    val containments = spark.sql("select id, container.id as sourceId, contained.id as targetId, container.orientation as sourceOrientation, contained.orientation as targetOrientation, recordType as interaction, position, overlap, mismatchCount, readCount from records where recordType = 'C'")
+    // convert containments to edge csv
+    logger.info("Reading GFA 1.0 containments from " + args(0) + " in Parquet format")
+    val containments = spark.sql("select id, container.id as sourceId, contained.id as targetId, container.orientation as sourceOrientation, contained.orientation as targetOrientation, recordType as interaction, position, overlap, mismatchCount, readCount from parquet.`" + args(0) +"` where recordType = 'C'")
 
     // rename containment columns
     val renamedContainments = containments
@@ -95,7 +93,9 @@ object ToPropertyGraphCsv {
     renamedContainments.write.option("header", true).csv(args(1) + "-containment-edges.csv")
     logger.info("Wrote " + renamedContainments.count() + " containment edges")
 
-    val links = spark.sql("select id, source.id as sourceId, target.id as targetId, source.orientation as sourceOrientation, target.orientation as targetOrientation, recordType as interaction, overlap, mappingQuality, mismatchCount from records where recordType = 'L'")
+    // convert links to edge csv
+    logger.info("Reading GFA 1.0 links from " + args(0) + " in Parquet format")
+    val links = spark.sql("select id, source.id as sourceId, target.id as targetId, source.orientation as sourceOrientation, target.orientation as targetOrientation, recordType as interaction, overlap, mappingQuality, mismatchCount from parquet.`" + args(0) + "` where recordType = 'L'")
 
     // rename link columns
     val renamedLinks = links
@@ -112,7 +112,10 @@ object ToPropertyGraphCsv {
     renamedLinks.write.option("header", true).csv(args(1) + "-link-edges.csv")
     logger.info("Wrote " + renamedLinks.count() + " link edges")
 
-    val traversals = spark.sql("select id, source.id as sourceId, target.id as targetId, source.orientation as sourceOrientation, target.orientation as targetOrientation, recordType as interaction, pathName, ordinal, overlap from records where recordType = 't'")
+    logger.info("Reading GFA 1.0 traversals from " + args(0) + " in Parquet format")
+
+    // convert traversals to edge csv
+    val traversals = spark.sql("select id, source.id as sourceId, target.id as targetId, source.orientation as sourceOrientation, target.orientation as targetOrientation, recordType as interaction, pathName, ordinal, overlap from parquet.`" + args(0) + "` where recordType = 't'")
 
     // rename traversal columns
     val renamedTraversals = traversals
