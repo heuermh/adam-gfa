@@ -32,7 +32,7 @@ import org.apache.spark.sql.SparkSession
 import com.github.heuermh.adam.gfa.sql.gfa1.Gfa1Record
 
 /**
- * Convert Gfa1Records to property graph CSV format.
+ * Transform GFA 1.0 records in Parquet format to property graph CSV.
  */
 object ToPropertyGraphCsv {
   val logger = Logger("com.github.heuermh.adam.gfa.ToPropertyGraphCsv")

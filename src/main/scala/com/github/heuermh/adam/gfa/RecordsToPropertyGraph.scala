@@ -29,23 +29,22 @@ import org.apache.spark.{ SparkConf, SparkContext }
 
 import org.apache.spark.sql.SparkSession
 
-import com.github.heuermh.adam.gfa.sql.gfa1.Gfa1Record
-
 /**
- * Transform GFA 1.0 records in Parquet format to property graph CSV.
+ * Transform GFA 1.0 records in Parquet format to property graph CSV format.
  */
-object ToPropertyGraphCsv2 {
-  val logger = Logger("com.github.heuermh.adam.gfa.ToPropertyGraphCsv2")
+object RecordsToPropertyGraph {
+  val logger = Logger("com.github.heuermh.adam.gfa.RecordsToPropertyGraph")
 
   def main(args: Array[String]) {
 
+    // todo: add argument for single file
     if (args.length < 2) {
-      System.err.println("at least two arguments required, e.g. in.parquet out[-segment-nodes.csv,-containment-edges.csv,-link-edges.csv,-traversal-edges.csv]")
+      System.err.println("at least two arguments required, e.g. in.parquet out[-segment-nodes.csv,-link-edges.csv,-traversal-edges.csv]")
       System.exit(1)
     }
 
     val conf = new SparkConf()
-      .setAppName("Transform Graphical Fragment Assembly (GFA) 1.0 records in Parquet format to property graph CSV.")
+      .setAppName("Transform Graphical Fragment Assembly (GFA) 1.0 records in Parquet format to property graph CSV format.")
       .set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
       .set("spark.kryo.registrator", "com.github.heuermh.adam.gfa.GfaKryoRegistrator")
       .set("spark.kryo.referenceTracking", "true")
@@ -72,26 +71,6 @@ object ToPropertyGraphCsv2 {
     // and write to csv
     renamedSegments.write.option("header", true).csv(args(1) + "-segment-nodes.csv")
     logger.info("Wrote " + renamedSegments.count() + " segment nodes")
-
-    // convert containment records to edge csv
-    logger.info("Reading GFA 1.0 containment records from " + args(0) + " in Parquet format")
-    val containments = spark.sql("select id, container.id as sourceId, contained.id as targetId, container.orientation as sourceOrientation, contained.orientation as targetOrientation, recordType as interaction, position, overlap, mismatchCount, readCount from parquet.`" + args(0) +"` where recordType = 'C'")
-
-    // rename containment columns
-    val renamedContainments = containments
-      .withColumnRenamed("id", "~id") // can't do these ~ column names in sql, parse error
-      .withColumnRenamed("sourceId", "~source")
-      .withColumnRenamed("targetId", "~target")
-      .withColumnRenamed("sourceOrientation", "sourceOrientation:String")
-      .withColumnRenamed("targetOrientation", "targetOrientation:String")
-      .withColumnRenamed("interaction", "interaction:String")
-      .withColumnRenamed("position", "position:Int")
-      .withColumnRenamed("overlap", "overlap:String")
-      .withColumnRenamed("mismatchCount", "mismatchCount:Int")
-      .withColumnRenamed("readCount", "readCount:Int")
-
-    renamedContainments.write.option("header", true).csv(args(1) + "-containment-edges.csv")
-    logger.info("Wrote " + renamedContainments.count() + " containment edges")
 
     // convert link records to edge csv
     logger.info("Reading GFA 1.0 link records from " + args(0) + " in Parquet format")
