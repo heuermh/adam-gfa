@@ -12,7 +12,7 @@ Install
 
  * JDK 1.8 or later, http://openjdk.java.net
  * Apache Maven 3.3.9 or later, http://maven.apache.org
- * Apache Spark 3.0.2 or later, built for Scala 2.12 http://spark.apache.org
+ * Apache Spark 3.1.2 or later, built for Scala 2.12 http://spark.apache.org
 
 
 To build
@@ -21,17 +21,6 @@ To build
 
 
 ### Running adam-gfa
-
-Read and write Graphical Fragment Assembly (GFA) version 1.0
-
-```
-$ spark-submit \
-    --class com.github.heuermh.adam.gfa.Gfa1 \
-    target/adam-gfa_2.12-${version}.jar \
-    in.gfa \
-    out.gfa
-```
-
 
 Transform GFA 1.0 to generic [`Gfa1Record`](#gfa1record) records in Parquet format
 
@@ -55,28 +44,6 @@ $ spark-submit \
 ```
 (creates separate `out.containments.parquet`, `out.links.parquet`, `out.paths.parquet`, `out.segments.parquet`, and `out.traversals.parquet` directories)
 
-
-Transform GFA 1.0 records in Parquet format to [Neptune property graph CSV format](https://docs.aws.amazon.com/neptune/latest/userguide/bulk-load-tutorial-format-gremlin.html)
-
-```
-$ spark-submit \
-    --class com.github.heuermh.adam.gfa.ToPropertyGraphCsv \
-    target/adam-gfa_2.12-${version}.jar \
-    in.parquet \
-    out
-```
-(creates separate `out-segment-nodes.csv`, `out-containment-edges.csv`, `out-link-edges.csv`, and `out-traversal-edges.csv` directories)
-
-
-Read and write Graphical Fragment Assembly (GFA) version 2.0
-
-```
-$ spark-submit \
-    --class com.github.heuermh.adam.gfa.Gfa2 \
-    target/adam-gfa_2.12-${version}.jar \
-    in.gfa2 \
-    out.gfa2
-```
 
 ### Graphical Fragment Assembly (GFA) version 1.0 schema in Parquet format
 
