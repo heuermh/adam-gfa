@@ -2,7 +2,7 @@
 <!--
 
     adam-gfa  Graphical Fragment Assembly (GFA) support for ADAM.
-    Copyright (c) 2017-2021 held jointly by the individual authors.
+    Copyright (c) 2017-2022 held jointly by the individual authors.
 
     This library is free software; you can redistribute it and/or modify it
     under the terms of the GNU Lesser General Public License as published
@@ -61,20 +61,20 @@
     </license>
   </licenses>
   <properties>
-    <adam.version>0.36.0</adam.version>
-    <dsh-bio.version>2.1-SNAPSHOT</dsh-bio.version>
+    <adam.version>1.0</adam.version>
+    <dsh-bio.version>2.0.8</dsh-bio.version>
     <grizzled-slf4j.version>1.3.4</grizzled-slf4j.version>
-    <hadoop.version>3.2.1</hadoop.version>
+    <hadoop.version>3.3.3</hadoop.version>
     <junit.version>4.13.2</junit.version>
     <maven.compile.source>1.8</maven.compile.source>
     <maven.compile.target>1.8</maven.compile.target>
     <maven.enforcer.jdk-version>[1.8,)</maven.enforcer.jdk-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.targetEncoding>UTF-8</project.build.targetEncoding>
-    <scala.version>2.12.10</scala.version>
+    <scala.version>2.12.15</scala.version>
     <scala.version.prefix>2.12</scala.version.prefix>
     <slf4j.version>1.7.30</slf4j.version>
-    <spark.version>3.1.2</spark.version>
+    <spark.version>3.2.1</spark.version>
   </properties>
   <build>
     <outputDirectory>target/scala-${scala.version}/classes</outputDirectory>
@@ -194,13 +194,6 @@
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>org.bdgenomics.adam</groupId>
-            <artifactId>adam-shade-spark3_${scala.version.prefix}</artifactId>
-            <version>${adam.version}</version>
-          </dependency>
-        </dependencies>
         <configuration>
           <createDependencyReducedPom>false</createDependencyReducedPom>
           <filters>
@@ -227,7 +220,6 @@
                   <shadedPattern>com.github.heuermh.adam.gfa.relocated.com.google.common</shadedPattern>
                 </relocation>
               </relocations>
-              <shaderHint>workaround</shaderHint>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
               </transformers>
